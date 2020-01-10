@@ -3,21 +3,21 @@
         {
             "type": "fileexists",
             "parameters": {
-                "file": "Test.java"
+                "classname": "Test"
             },
             "score": 1.0,
             "visibility": "hidden",
             "conditiontests": [{
                 "type":"noarraylist",
                 "parameters": {
-                    "file":"Test.java"
+                    "classname":"Test"
                 },
                 "score":1.0,
                 "visibility": "hidden",
                 "conditiontests": [{
                     "type": "compiles",
                     "parameters": {
-                        "file":"Test.java"
+                        "classname":"Test"
                     },
                     "score":1.0,
                     "visibility": "hidden"
