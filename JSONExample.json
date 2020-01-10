@@ -1,0 +1,30 @@
+{
+    "tests":[
+        {
+            "type": "fileexists",
+            "parameters": {
+                "file": "Test.java"
+            },
+            "score": 1.0,
+            "visibility": "hidden",
+            "conditiontests": [{
+                "type":"noarraylist",
+                "parameters": {
+                    "file":"Test.java"
+                },
+                "score":1.0,
+                "visibility": "hidden",
+                "conditiontests": [{
+                    "type": "compiles",
+                    "parameters": {
+                        "file":"Test.java"
+                    },
+                    "score":1.0,
+                    "visibility": "hidden"
+                   }
+                ]
+               }
+            ]
+        }
+    ]
+}
