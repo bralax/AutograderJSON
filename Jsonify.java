@@ -12,10 +12,9 @@ public class Jsonify {
 
    public static void main(String args[]) throws Exception {
       HashMap<String, String> testMap = new HashMap<>();
-      testMap.put("noarraylist", "classDoesNotUseArrayLists");
+      testMap.put("noarraylist", "classDoesNotUseArrayList");
       testMap.put("nopackage", "classDoesNotUsePackages");
       testMap.put("comptests", "comparisonTests");
-      testMap.put("comptest","compTest");
       testMap.put("compfiles","diffFiles");
       testMap.put("hasfield","hasFieldTest");
       testMap.put("hasmethod","hasMethodTest");
@@ -48,7 +47,7 @@ public class Jsonify {
       JSONObject obj = (JSONObject)(new JSONParser().parse(new FileReader("JSONExample.json")));
       PrintWriter pw = new PrintWriter(new FileWriter("Main.java"));
       pw.println("public class Main {\n");
-      pw.println("\tpublic static void main(String[] args) {");
+      pw.println("\tpublic static void main(String[] args) throws Exception {");
       pw.println("\t\tAutograder gr = new Autograder();");
       if (obj.containsKey("tests")) {
          JSONArray arr = (JSONArray) obj.get("tests");
@@ -122,8 +121,6 @@ public class Jsonify {
            file = (String) params.get("classname");
            count = (Number) params.get("count");
            return "\"" + file + "\", " + count;
-        case "comptest":
-           return "";
         case "compfiles":
            if (!params.containsKey("first")) {
               throw new Exception("Test of type " + type + " does not have parameter first");
@@ -149,7 +146,20 @@ public class Jsonify {
            String fieldName = (String) params.get("field");
            return "\"" + name + "\", \"" + fieldName + "\", \"" + typeName +"\"";
         case "hasmethod":
-           return "";
+           if (!params.containsKey("classname")) {
+              throw new Exception("Test of type " + type + " does not have parameter classname");
+           }
+           if (!params.containsKey("method")) {
+              throw new Exception("Test of type " + type + " does not have parameter method");
+           }
+           if (!params.containsKey("arguments")) {
+              throw new Exception("Test of type " + type + " does not have parameter arguments");
+           }
+           name = (String) params.get("classname");
+           String method = (String) params.get("method");
+           JSONArray arguments = (JSONArray) params.get("arguments");
+           return "\"" + name + "\", \"" + method + "\", \"" + arguments.toJSONString() +"\"";
+
         case "logdifftest":
            if (!params.containsKey("classname")) {
               throw new Exception("Test of type " + type + " does not have parameter classname");
