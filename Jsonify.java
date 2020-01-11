@@ -11,6 +11,9 @@ import java.io.FileWriter;
 public class Jsonify {
 
    public static void main(String args[]) throws Exception {
+      if (args.length < 1 || !args[0].contains(".json")) {
+         throw new Exception("Missing the json file parameter. This file must be called as followed: java -classpath json-simple-1.1.jar:. Jsonify {filename}.json");
+      }
       HashMap<String, String> testMap = new HashMap<>();
       testMap.put("noarraylist", "classDoesNotUseArrayList");
       testMap.put("nopackage", "classDoesNotUsePackages");
@@ -45,9 +48,9 @@ public class Jsonify {
       conditional.add("constructcount");
       conditional.add("methodcount");
       conditional.add("fileexists");
-      JSONObject obj = (JSONObject)(new JSONParser().parse(new FileReader("JSONExample.json")));
-      PrintWriter pw = new PrintWriter(new FileWriter("Main.java"));
-      pw.println("public class Main {\n");
+      JSONObject obj = (JSONObject)(new JSONParser().parse(new FileReader(args[0])));
+      PrintWriter pw = new PrintWriter(new FileWriter("AutograderMain.java"));
+      pw.println("public class AutograderMain {\n");
       pw.println("\tpublic static void main(String[] args) throws Exception {");
       pw.println("\t\tAutograder gr = new Autograder();");
       if (obj.containsKey("tests")) {
