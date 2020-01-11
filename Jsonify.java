@@ -15,6 +15,7 @@ public class Jsonify {
       testMap.put("noarraylist", "classDoesNotUseArrayList");
       testMap.put("nopackage", "classDoesNotUsePackages");
       testMap.put("comptests", "comparisonTests");
+      testMap.put("comptest", "comparisonTest");
       testMap.put("compfiles","diffFiles");
       testMap.put("hasfield","hasFieldTest");
       testMap.put("hasmethod","hasMethodTest");
@@ -121,6 +122,16 @@ public class Jsonify {
            file = (String) params.get("classname");
            count = (Number) params.get("count");
            return "\"" + file + "\", " + count;
+        case "comptest":
+           if (!params.containsKey("classname")) {
+              throw new Exception("Test of type " + type + " does not have parameter classname");
+           }
+           if (!params.containsKey("input")) {
+              throw new Exception("Test of type " + type + " does not have parameter input");
+           }
+           file = (String) params.get("classname");
+           count = (Number) params.get("input");
+           return "\"" + file + "\", \"" + count + "\"";
         case "compfiles":
            if (!params.containsKey("first")) {
               throw new Exception("Test of type " + type + " does not have parameter first");
