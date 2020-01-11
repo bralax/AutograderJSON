@@ -1,3 +1,9 @@
+# Json to java main converter for this [Autograder](https://github.com/bralax/gradescope_autograder)
+
+   
+
+
+
 classDoesNotUseArrayLists - noarraylist*
 classDoesNotUsePackages - nopackage*
 comparisonTests - comptests
