@@ -12,9 +12,9 @@ At the top most level, there should be a parameter named "tests". This should an
 ```
    
 Each object in the array should have the following parameters:
-   - ###type:
+   - **type**:
    - **parameters**:
-     -**classname**
+     - **classname**
    - **score**:
    - **visibility**:
    - **conditiontests (optional)**: 
