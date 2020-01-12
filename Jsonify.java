@@ -133,8 +133,8 @@ public class Jsonify {
               throw new Exception("Test of type " + type + " does not have parameter input");
            }
            file = (String) params.get("classname");
-           count = (Number) params.get("input");
-           return "\"" + file + "\", \"" + count + "\"";
+           input = (String) params.get("input");
+           return "\"" + file + "\", \"" + input + "\"";
         case "compfiles":
            if (!params.containsKey("first")) {
               throw new Exception("Test of type " + type + " does not have parameter first");
